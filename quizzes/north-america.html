@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GEO10 Map Quizzes</title>
+  <!--  Bootstrap 5 (alpha)  -->
+  <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" rel="stylesheet"/>
+
+  <!--  Stylesheets  -->
+  <link href="../styles.css" rel="stylesheet" type="text/css"/>
+  <link href="quiz-styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="text-center">
+  <nav class="navbar navbar-expand-xl navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../index.html">Geography 10 Map Quizzes</a>
+      <button aria-controls=#navbar-content" aria-expanded="false" aria-label="Toggle navbar" class="navbar-toggler"
+              data-target="#navbar-content" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar-content">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="south-america.html">South America</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link active" href="#">North America</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="asia.html">Asia</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="europe.html">Europe</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="se-asia-oceania.html">SE Asia & Oceania</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="africa.html">Africa</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="world.html">World</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="question-div row">
+    <span class="text-left align-baseline col" id="stopwatch"></span>
+    <span class="text-center align-baseline col" id="question-span"></span>
+    <span class="text-right align-baseline col" id="progress"></span>
+  </div>
+  <div class="map-div">
+    <svg id="north-america-map" preserveAspectRatio="xMidYMid meet" viewBox="0 0 792 612">
+      <image class="base-map" height="100%" href="img/north-america/North America.svg" width="100%"/>
+
+      <g class="map-item-group extended-bb">
+        <path class="map-item-text-loc" d="M611.0271,445.6121" id="BAHAMAS-TEXT"/>
+        <use class="map-item-bounds" href="img/north-america/Bahamas.svg#bounds" id="BAHAMAS-BB"/>
+        <use aria-label="Bahamas" class="map-item" href="img/north-america/Bahamas.svg#Bahamas" id="BAHAMAS"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M525.7743,515.8257" id="BELIZE-TEXT"/>
+        <use aria-label="Belize" class="map-item" href="img/north-america/Belize.svg#Belize" id="BELIZE"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M402.0881,215.2923" id="CANADA-TEXT"/>
+        <use aria-label="Canada" class="map-item" href="img/north-america/Canada.svg#Canada" id="CANADA"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M530.295,588.669" id="COSTA-RICA-TEXT"/>
+        <use aria-label="Costa Rica" class="map-item" href="img/north-america/Costa Rica.svg#Costa_Rica" id="COSTA-RICA"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M573.9362,484.3039" id="COSTA-RICA-TEXT"/>
+        <use aria-label="Cuba" class="map-item" href="img/north-america/Cuba.svg#Cuba" id="CUBA"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M661.1381,506.2643" id="DOMINICAN-REPUBLIC-TEXT"/>
+        <use aria-label="Dominican Republic" class="map-item" href="img/north-america/Dominican Republic.svg#Dominican_Republic" id="DOMINICAN-REPUBLIC"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M498.215,565.107" id="EL-SALVADOR-TEXT"/>
+        <use aria-label="El Salvador" class="map-item" href="img/north-america/El Salvador.svg#El_Salvador" id="EL-SALVADOR"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M545.5,42.7" id="GREENLAND-TEXT"/>
+        <use aria-label="Greenland" class="map-item" href="img/north-america/Greenland.svg#Greenland" id="GREENLAND"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M472.014,538.747" id="GUATEMALA-TEXT"/>
+        <use aria-label="Guatemala" class="map-item" href="img/north-america/Guatemala.svg#Guatemala" id="GUATEMALA"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M626.6574,478.8642" id="HAITI-TEXT"/>
+        <use aria-label="Haiti" class="map-item" href="img/north-america/Haiti.svg#Haiti" id="HAITI"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M540.6547,539.8675" id="HONDURAS-TEXT"/>
+        <use aria-label="Honduras" class="map-item" href="img/north-america/Honduras.svg#Honduras" id="HONDURAS"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M578.137,512.785" id="JAMAICA-TEXT"/>
+        <use aria-label="Jamaica" class="map-item" href="img/north-america/Jamaica.svg#Jamaica" id="JAMAICA"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M746.8,476.8" id="MARTINIQUE-TEXT"/>
+        <use class="map-item-bounds" href="img/north-america/Martinique.svg#bounds" id="MARTINIQUE-BB"/>
+        <use aria-label="Martinique" class="map-item marker" href="img/north-america/Martinique.svg#Martinique" id="MARTINIQUE"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M415.21,498.9834" id="MEXICO-TEXT"/>
+        <use aria-label="Mexico" class="map-item" href="img/north-america/Mexico.svg#Mexico" id="MEXICO"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M562.775,560.947" id="NICARAGUA-TEXT"/>
+        <use aria-label="Nicaragua" class="map-item" href="img/north-america/Nicaragua.svg#Nicaragua" id="NICARAGUA"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M602.5363,586.789" id="PANAMA-TEXT"/>
+        <use aria-label="Panama" class="map-item" href="img/north-america/Panama.svg#Panama" id="PANAMA"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M681.1389,468.0639" id="PUERTO-RICO-TEXT"/>
+        <use aria-label="Puerto Rico" class="map-item" href="img/north-america/Puerto Rico.svg#Puerto_Rico" id="PUERTO-RICO"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M382.9,329.4" id="PUERTO-RICO-TEXT"/>
+        <use aria-label="United States" class="map-item" href="img/north-america/United States.svg#United_States" id="UNITED-STATES"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M727.4807,544.9264" id="TRINIDAD=AND=TOBAGO-TEXT"/>
+        <use aria-label="Trinidad and Tobago" class="map-item marker" href="img/north-america/Trinidad and Tobago.svg#Trinidad_and_Tobago" id="TRINIDAD-AND-TOBAGO"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M362.0906,455.06" id="CHIHUAHUAN-DESERT-TEXT"/>
+        <use aria-label="Chihuahuan Desert" class="map-item" href="img/north-america/Chihuahuan Desert.svg#Chihuahuan_Desert" id="CHIHUAHUAN-DESERT"/>
+      </g>
+      <g class="map-item-group extended-bb">
+        <path class="map-item-text-loc" d="M380.411,387.218" id="RIO-GRANDE-TEXT"/>
+        <use class="map-item-bounds" href="img/north-america/Rio Grande.svg#bounds" id="RIO-GRANDE-BB"/>
+        <use aria-label="Rio Grande" class="map-item map-river" href="img/north-america/Rio Grande.svg#Rio_Grande" id="RIO-GRANDE"/>
+      </g>
+      <g class="map-item-group extended-bb">
+        <path class="map-item-text-loc" d="M500.1729,368.6631" id="MISSISSIPPI-RIVER-TEXT"/>
+        <use class="map-item-bounds" href="img/north-america/Mississippi River.svg#bounds" id="MISSISSIPPI-RIVER-BB"/>
+        <use aria-label="Mississippi River" class="map-item map-river" href="img/north-america/Mississippi River.svg#Mississippi_River" id="MISSISSIPPI-RIVER"/>
+      </g>
+      <g class="map-item-group extended-bb">
+        <path class="map-item-text-loc" d="M578.656,273.134" id="ST-LAWRENCE-RIVER-TEXT"/>
+        <use class="map-item-bounds" href="img/north-america/St. Lawrence River.svg#bounds" id="ST-LAWRENCE-RIVER-BB"/>
+        <use aria-label="St. Lawrence River" class="map-item map-river" href="img/north-america/St. Lawrence River.svg#St._Lawrence_River" id="ST-LAWRENCE-RIVER"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M487.5735,179.3895" id="HUDSON-BAY"/>
+        <use class="map-item-bounds" href="img/north-america/Hudson Bay.svg#bounds" id="HUDSON-BAY-BB"/>
+        <use aria-label="Hudson Bay" class="map-item marker" href="img/north-america/Hudson Bay.svg#Hudson_Bay" id="HUDSON-BAY"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M526.6541,95.8438" id="BAFFIN-BAY"/>
+        <use class="map-item-bounds" href="img/north-america/Baffin Bay.svg#bounds" id="BAFFIN-BAY-BB"/>
+        <use aria-label="Baffin Bay" class="map-item marker" href="img/north-america/Baffin Bay.svg#Baffin_Bay" id="BAFFIN-BAY"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M163.9245,61.8038" id="BERING-SEA-TEXT"/>
+        <use class="map-item-bounds" href="img/north-america/Bering Sea.svg#bounds" id="BERING-SEA-BB"/>
+        <use aria-label="Bering Sea" class="map-item marker" href="img/north-america/Bering Sea.svg#Bering_Sea" id="BERING-SEA"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M163.3085,292.1809" id="PACIFIC-OCEAN-TEXT"/>
+        <use class="map-item-bounds" href="img/north-america/Pacific Ocean.svg#bounds" id="PACIFIC-OCEAN-BB"/>
+        <use aria-label="Pacific Ocean" class="map-item marker" href="img/north-america/Pacific Ocean.svg#Pacific_Ocean" id="PACIFIC-OCEAN"/>
+      </g>
+      <g class="map-item-group extended-bb">
+        <path class="map-item-text-loc" d="M692,315" id="ATLANTIC-OCEAN-TEXT"/>
+        <use class="map-item-bounds" href="img/north-america/Atlantic Ocean.svg#bounds" id="ATLANTIC-OCEAN-BB"/>
+        <use aria-label="Atlantic Ocean" class="map-item marker" href="img/north-america/Atlantic Ocean.svg#Atlantic_Ocean" id="ATLANTIC-OCEAN"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M496.5738,452.6233" id="GULF-OF-MEXICO-TEXT"/>
+        <use class="map-item-bounds" href="img/north-america/Gulf of Mexico.svg#bounds" id="GULF-OF-MEXICO-BB"/>
+        <use aria-label="Gulf of Mexico" class="map-item marker" href="img/north-america/Gulf of Mexico.svg#Gulf_of_Mexico" id="GULF-OF-MEXICO"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M626.4166,550.4265" id="CARIBBEAN-SEA-TEXT"/>
+        <use class="map-item-bounds" href="img/north-america/Caribbean Sea.svg#bounds" id="CARIBBEAN-SEA-BB"/>
+        <use aria-label="Caribbean Sea" class="map-item marker" href="img/north-america/Caribbean Sea.svg#Caribbean_Sea" id="CARIBBEAN-SEA"/>
+      </g>
+      <g class="map-item-group">
+        <path class="map-item-text-loc" d="M634.0976,176.9678" id="LABRADOR-SEA-TEXT"/>
+        <use class="map-item-bounds" href="img/north-america/Labrador Sea.svg#bounds" id="LABRADOR-SEA-BB"/>
+        <use aria-label="Labrador Sea" class="map-item marker" href="img/north-america/Labrador Sea.svg#Labrador_Sea" id="LABRADOR-SEA"/>
+      </g>
+    </svg>
+  </div>
+  <div class="map-controls">
+    <button class="btn btn-secondary map-restart-btn" onclick="restartQuiz();">Restart</button>
+  </div>
+</main>
+
+<div class="tooltip-div d-none">
+  <span id="tooltip-content"></span>
+</div>
+
+<!--  Bootstrap JS  -->
+<script crossorigin="anonymous"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<!--  Main JS  -->
+<script>
+  window.quiz = {
+    curName: '',
+    done: []
+  }
+</script>
+<script src="quiz.js"></script>
+</body>
+</html>
