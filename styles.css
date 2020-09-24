@@ -1,0 +1,42 @@
+:root {
+    --text-color: #000000;
+    --primary-color: #82b1ff;
+    --primary-dark-color: #4d82cb;
+    --primary-light-color: #b6e3ff;
+    --secondary-color: #ffd180;
+    --secondary-dark-color: #caa052;
+    --secondary-light-color: #ffffb1;
+}
+
+body {
+    margin: 20px;
+    color: var(--text-color);
+}
+
+header {
+    padding: 10px;
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+header .navbar-brand {
+    font-size: 150%;
+}
+
+header .navbar .nav-item {
+    border-radius: 2px;
+    padding: 0 10px;
+}
+
+header .navbar .nav-link {
+    border-radius: 2px;
+    margin: auto;
+}
+
+header .navbar .nav-link:hover {
+    background-color: #FFF2;
+}
+
+main.main-content {
+    padding: 15px;
+}
