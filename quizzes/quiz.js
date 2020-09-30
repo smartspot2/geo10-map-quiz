@@ -67,7 +67,8 @@ function initQuiz() {
   let randName = window.QUIZ_ITEMS[randIdx];
   window.quiz = {
     curName: randName,
-    done: []
+    done: [],
+    numIncorrect: 0
   }
   let question_span = document.getElementById('question-span');
   question_span.innerText = randName;
@@ -101,6 +102,7 @@ function correctAnswer(mapItem) {
 }
 
 function nextItem() {
+  window.quiz.numIncorrect = 0;
   window.quiz.done.push(window.quiz.curName);
   let question_span = document.getElementById('question-span');
   let items_left = window.QUIZ_ITEMS.filter(it => !window.quiz.done.includes(it))
@@ -127,9 +129,33 @@ function incorrectAnswer(mapItem) {
   let textElement = parent.getElementsByClassName('map-item-text-group').item(0);
   textElement.classList.add('visible');
   parent.classList.add('incorrect');
+  window.quiz.numIncorrect += 1;
   setTimeout(() => {
     parent.classList.remove('incorrect');
     textElement.classList.remove('visible');
+  }, 1000);
+  if (window.quiz.numIncorrect > 3) {
+    highlightCurrent();
+  }
+}
+
+function highlightCurrent() {
+  let curItemGroup;
+  findItemGroup:
+      for (let el of document.getElementsByClassName('map-item-group')) {
+        for (let child of el.children) {
+          if (child.id === convertName(window.quiz.curName)) {
+            curItemGroup = el;
+            break findItemGroup;
+          }
+        }
+      }
+  if (curItemGroup.classList.contains('highlighted')) {
+    return;
+  }
+  curItemGroup.classList.add('highlighted');
+  setTimeout(() => {
+    curItemGroup.classList.remove('highlighted');
   }, 1000);
 }
 

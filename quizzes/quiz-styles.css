@@ -1,6 +1,7 @@
 :root {
     --incorrect-color: red;
     --correct-color: green;
+    --highlight-color: blue;
     --map-width: 50vw;
 }
 
@@ -98,6 +99,15 @@ main {
 
 .map-item-group.correct .map-item.map-lake, .map-item-group.incorrect .map-item.map-lake {
     fill-opacity: 0.3;
+}
+
+.map-item-group.highlighted:not(.correct):not(.incorrect) .map-item {
+    fill: var(--highlight-color) !important;
+    fill-opacity: 0.4;
+}
+
+.map-item-group.highlighted:not(.correct):not(.incorrect) .map-item-text-group {
+    opacity: 0.5;
 }
 
 .map-item-text-group {
