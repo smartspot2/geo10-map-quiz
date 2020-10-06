@@ -131,6 +131,7 @@ main {
 }
 
 .question-div {
+    display: flex;
     position: sticky;
     position: -webkit-sticky;
     top: 0;
@@ -142,11 +143,14 @@ main {
 }
 
 #question-span {
+    flex: 80%;
     font-size: 125%;
 }
 
 #stopwatch, #progress {
-    alignment-baseline: bottom;
+    flex: 10%;
+    white-space: nowrap;
+    margin: auto;
 }
 
 .tooltip-div {

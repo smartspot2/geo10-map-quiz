@@ -52,23 +52,34 @@ setInterval(() => {
   stopwatch_span.innerText = `${minute}:${second.padStart(2, '0')}`;
 }, 1000);
 
-function restartQuiz() {
+/**
+ * Reset items and quiz time
+ */
+function restartQuiz(initItems) {
   for (let itemGroup of document.getElementsByClassName('map-item-group')) {
     itemGroup.classList.remove('incorrect');
     itemGroup.classList.remove('correct');
   }
-  initQuizItems();
+  if (initItems) {
+    window.QUIZ_ITEMS = initItems;
+  } else {
+    initQuizItems();
+  }
   initQuiz();
   window.quiz.start = Date.now();
 }
 
+/**
+ * Reset quiz variable and info
+ */
 function initQuiz() {
   let randIdx = Math.floor(Math.random() * window.QUIZ_ITEMS.length);
   let randName = window.QUIZ_ITEMS[randIdx];
   window.quiz = {
     curName: randName,
     done: [],
-    numIncorrect: 0
+    numIncorrect: 0,
+    itemsIncorrect: []
   }
   let question_span = document.getElementById('question-span');
   question_span.innerText = randName;
@@ -76,8 +87,13 @@ function initQuiz() {
   tooltip_content.innerText = randName;
   let progress_span = document.getElementById('progress');
   progress_span.innerText = `0 / ${window.QUIZ_ITEMS.length}`;
+  document.getElementsByClassName('map-review-btn')
+      .item(0).classList.add('d-none');
 }
 
+/**
+ * Reset quiz items
+ */
 function initQuizItems() {
   window.QUIZ_ITEMS = [];
   for (let item of document.getElementsByClassName('map-item')) {
@@ -86,6 +102,10 @@ function initQuizItems() {
   }
 }
 
+/**
+ * Checks whether clicked item is correct
+ * @param mapItem - clicked element
+ */
 function processClick(mapItem) {
   if (convertName(window.quiz.curName) === mapItem.id.replace('-BB', '')) {
     correctAnswer(mapItem);
@@ -96,11 +116,18 @@ function processClick(mapItem) {
   progress_span.innerText = `${window.quiz.done.length} / ${window.QUIZ_ITEMS.length}`;
 }
 
+/**
+ * Process a correct answer
+ * @param mapItem - clicked element
+ */
 function correctAnswer(mapItem) {
   mapItem.parentElement.classList.add('correct');
   nextItem();
 }
 
+/**
+ * Generates a new item
+ */
 function nextItem() {
   window.quiz.numIncorrect = 0;
   window.quiz.done.push(window.quiz.curName);
@@ -112,6 +139,10 @@ function nextItem() {
         .item(0).classList.add('d-none');
     question_span.innerText = 'Finished.';
     window.quiz.curName = '';
+    if (window.quiz.itemsIncorrect.length > 0) {
+      document.getElementsByClassName('map-review-btn')
+          .item(0).classList.remove('d-none');
+    }
     return;
   }
   let randIdx = Math.floor(Math.random() * items_left.length);
@@ -121,6 +152,10 @@ function nextItem() {
   tooltip_content.innerText = window.quiz.curName;
 }
 
+/**
+ * Process an incorrect answer
+ * @param mapItem - clicked element
+ */
 function incorrectAnswer(mapItem) {
   let parent = mapItem.parentElement;
   if (parent.classList.contains('incorrect') || parent.classList.contains('correct')) {
@@ -137,8 +172,14 @@ function incorrectAnswer(mapItem) {
   if (window.quiz.numIncorrect > 3) {
     highlightCurrent();
   }
+  if (!window.quiz.itemsIncorrect.includes(window.quiz.curName)) {
+    window.quiz.itemsIncorrect.push(window.quiz.curName);
+  }
 }
 
+/**
+ * Highlight current item
+ */
 function highlightCurrent() {
   let curItemGroup;
   findItemGroup:
@@ -159,10 +200,19 @@ function highlightCurrent() {
   }, 1000);
 }
 
+/**
+ * Converts readable name to ID
+ * @param name - readable name
+ * @returns {string} - ID name
+ */
 function convertName(name) {
   return name.toUpperCase().replaceAll(/[\s.']+/g, '-');
 }
 
+/**
+ * Displays the text label for an item
+ * @param mapItem - item to display text for
+ */
 function addTextElement(mapItem) {
   let parent = mapItem.parentElement;
   let textLocation = getTextLocation(parent);
@@ -189,6 +239,11 @@ function addTextElement(mapItem) {
   textElementGroup.insertBefore(textBackground, textElement);
 }
 
+/**
+ * Retrieve location of text in an item group
+ * @param itemGroup - group that item is in
+ * @returns {boolean|{x: *, y: *}} - false if invalid, coordinate pair if valid
+ */
 function getTextLocation(itemGroup) {
   let textElement = itemGroup.getElementsByClassName('map-item-text-loc');
   if (textElement.length > 0) {
@@ -197,4 +252,11 @@ function getTextLocation(itemGroup) {
     return {x: coord[0], y: coord[1]};
   }
   return false;
+}
+
+/**
+ * Restart quiz, but only use items that were wrong the previous time
+ */
+function reviewQuiz() {
+  restartQuiz(window.quiz.itemsIncorrect);
 }

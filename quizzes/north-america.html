@@ -50,10 +50,10 @@
 </header>
 
 <main>
-  <div class="question-div row">
-    <span class="text-left align-baseline col" id="stopwatch"></span>
-    <span class="text-center align-baseline col" id="question-span"></span>
-    <span class="text-right align-baseline col" id="progress"></span>
+  <div class="question-div">
+    <span class="text-left align-baseline" id="stopwatch"></span>
+    <span class="text-center align-baseline" id="question-span"></span>
+    <span class="text-right align-baseline" id="progress"></span>
   </div>
   <div class="map-div">
     <svg id="north-america-map" preserveAspectRatio="xMidYMid meet" viewBox="0 0 792 612">
@@ -200,6 +200,7 @@
   </div>
   <div class="map-controls">
     <button class="btn btn-secondary map-restart-btn" onclick="restartQuiz();">Restart</button>
+    <button class="btn btn-secondary map-review-btn d-none" onclick="reviewQuiz();">Review</button>
   </div>
 </main>
 
