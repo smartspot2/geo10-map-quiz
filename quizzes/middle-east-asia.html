@@ -296,8 +296,21 @@
     </svg>
   </div>
   <div class="map-controls">
-    <button class="btn btn-secondary map-restart-btn" onclick="restartQuiz();">Restart</button>
-    <button class="btn btn-secondary map-review-btn d-none" onclick="reviewQuiz();">Review</button>
+    <div id="map-controls-mode" class="text-left">
+      <!--      <label for="select-mode"></label>-->
+      <!--      <select id="select-mode" onchange="changeQuiz(this);">-->
+      <!--        <option value="match">Match</option>-->
+      <!--        <option value="type">Type</option>-->
+      <!--      </select>-->
+    </div>
+    <div id="map-controls-btns">
+      <button class="btn btn-secondary map-restart-btn" onclick="restartQuiz();">Restart</button>
+      <button class="btn btn-secondary map-review-btn d-none" onclick="reviewQuiz();">Review</button>
+    </div>
+    <div id="map-controls-view-text" class="form-check text-right">
+      <label for="checkbox-view-text" class="form-check-label">View text</label>
+      <input id="checkbox-view-text" class="form-check-input float-right" type="checkbox" onclick="viewText();">
+    </div>
   </div>
 </main>
 

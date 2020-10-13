@@ -260,3 +260,13 @@ function getTextLocation(itemGroup) {
 function reviewQuiz() {
   restartQuiz(window.quiz.itemsIncorrect);
 }
+
+function viewText() {
+  for (let textGroup of document.getElementsByClassName('map-item-text-group')) {
+    textGroup.classList.toggle('visible');
+  }
+}
+
+function changeQuiz(select) {
+  window.quiz.mode = select.selectedOptions[0].value;
+}

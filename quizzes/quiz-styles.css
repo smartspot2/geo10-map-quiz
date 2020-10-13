@@ -137,7 +137,7 @@ main {
     top: 0;
     background-color: #ffffff66;
     margin: auto;
-    width: 50vw;
+    width: var(--map-width);
     padding: 10px;
     text-align: center;
 }
@@ -171,7 +171,41 @@ main {
 }
 
 .map-controls {
+    display: flex;
     margin: auto;
     padding-top: 10px;
     text-align: center;
+    width: var(--map-width);
+}
+
+#map-controls-btns {
+    flex: 50%;
+}
+
+#map-controls-mode, #map-controls-view-text {
+    flex: 25%;
+    margin: auto;
+    white-space: nowrap;
+}
+
+#checkbox-view-text {
+    margin-left: 0.5em;
+}
+
+@media (max-width: 1500px) {
+    :root {
+        --map-width: 60vw;
+    }
+}
+
+@media (max-width: 1200px) {
+    :root {
+        --map-width: 75vw;
+    }
+}
+
+@media (max-width: 800px) {
+    :root {
+        --map-width: 90vw;
+    }
 }
