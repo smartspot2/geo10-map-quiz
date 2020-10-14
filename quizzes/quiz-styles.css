@@ -101,9 +101,14 @@ main {
     fill-opacity: 0.3;
 }
 
-.map-item-group.highlighted:not(.correct):not(.incorrect) .map-item {
+.map-item-group.highlighted:not(.correct):not(.incorrect) .map-item:not(.map-river) {
     fill: var(--highlight-color) !important;
     fill-opacity: 0.4;
+}
+
+.map-item-group.highlighted:not(.correct):not(.incorrect) .map-item.map-river {
+    stroke: var(--highlight-color) !important;
+    stroke-opacity: 0.4;
 }
 
 .map-item-group.highlighted:not(.correct):not(.incorrect) .map-item-text-group {

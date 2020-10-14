@@ -167,7 +167,10 @@ function incorrectAnswer(mapItem) {
   window.quiz.numIncorrect += 1;
   setTimeout(() => {
     parent.classList.remove('incorrect');
-    textElement.classList.remove('visible');
+    let viewTextChecked = document.getElementById('checkbox-view-text').checked;
+    if (!viewTextChecked) {  // don't remove if it was visible beforehand
+      textElement.classList.remove('visible');
+    }
   }, 1000);
   if (window.quiz.numIncorrect > 3) {
     highlightCurrent();
@@ -261,9 +264,13 @@ function reviewQuiz() {
   restartQuiz(window.quiz.itemsIncorrect);
 }
 
-function viewText() {
+function viewText(el) {
   for (let textGroup of document.getElementsByClassName('map-item-text-group')) {
-    textGroup.classList.toggle('visible');
+    if (el.checked) {
+      textGroup.classList.add('visible');
+    } else {
+      textGroup.classList.remove('visible');
+    }
   }
 }
 
