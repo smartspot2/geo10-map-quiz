@@ -28,6 +28,7 @@ main {
 }
 
 .map-div .map-item.map-river {
+    fill: none;
     stroke-width: 2px;
 }
 
