@@ -209,7 +209,7 @@ function highlightCurrent() {
  * @returns {string} - ID name
  */
 function convertName(name) {
-  return name.toUpperCase().replaceAll(/[\s.']+/g, '-');
+  return name.toUpperCase().replaceAll(/[\s.'\/]+/g, '-');
 }
 
 /**
