@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GEO10 Map Quizzes</title>
+  <!--  Bootstrap 5 (alpha)  -->
+  <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" rel="stylesheet"/>
+
+  <!--  Stylesheets  -->
+  <link href="../styles.css" rel="stylesheet" type="text/css"/>
+  <link href="quiz-styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="text-center">
+  <nav class="navbar navbar-expand-xl navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../index.html">Geography 10 Map Quizzes</a>
+      <button class="navbar-toggler" aria-controls=#navbar-content" aria-expanded="false" aria-label="Toggle navbar"
+              data-target="#navbar-content" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbar-content" class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="south-america.html">South America</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="north-america.html">North America</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="middle-east-asia.html">Middle East & Asia</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="europe.html">Europe</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link active" href="#">SE Asia & Oceania</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="africa.html">Africa</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="world.html">World</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="question-div">
+    <span id="stopwatch" class="text-left align-baseline"></span>
+    <span id="question-span" class="text-center align-baseline"></span>
+    <span id="progress" class="text-right align-baseline"></span>
+  </div>
+  <div class="map-div">
+    <svg id="asia-map" preserveAspectRatio="xMidYMid meet" viewBox="0 0 792 612">
+      <!-- Turn down brightness of image -->
+      <filter id="linear" x="0" y="0" width="100%" height="100%">
+        <feComponentTransfer>
+          <feFuncR type="linear" slope="1.5" intercept="0.1"></feFuncR>
+          <feFuncG type="linear" slope="1.5" intercept="0.1"></feFuncG>
+          <feFuncB type="linear" slope="1.5" intercept="0.1"></feFuncB>
+        </feComponentTransfer>
+      </filter>
+      <image class="base-map" height="100%" href="img/se-asia-oceania/SEAsiaOceania.svg" width="100%" filter="url(#linear)"/>
+      <!-- Countries -->
+
+      <!-- Above countries -->
+      <g class="map-item-group">
+        <path id="TIBETAN-PLATEAU-TEXT" class="map-item-text-loc" d="M68.9963,148.8948"/>
+        <use id="TIBETAN-PLATEAU" class="map-item map-region" aria-label="Tibetan Plateau" href="img/se-asia-oceania/Tibetan Plateau.svg#Tibetan_Plateau"/>
+      </g>
+      <g class="map-item-group">
+        <path id="GOBI-DESERT-TEXT" class="map-item-text-loc" d="M220.4894,73.5532"/>
+        <use id="GOBI-DESERT" class="map-item map-region" aria-label="Gobi Desert" href="img/se-asia-oceania/Gobi Desert.svg#Gobi_Desert"/>
+      </g>
+      <g class="map-item-group">
+        <path id="GREAT-BARRIER-REEF-TEXT" class="map-item-text-loc" d="M416.0707,497.4334"/>
+        <use id="GREAT-BARRIER-REEF" class="map-item map-region" aria-label="Great Barrier Reef" href="img/se-asia-oceania/Great Barrier Reef.svg#Great_Barrier_Reef"/>
+      </g>
+
+      <!--  Rivers  -->
+      <g class="map-item-group">
+        <path id="IRRAWADDY-RIVER-TEXT" class="map-item-text-loc" d="M113.76,252.5654"/>
+        <use id="IRRAWADDY-RIVER-BB" class="map-item-bounds" href="img/se-asia-oceania/Irrawaddy River.svg#bounds"/>
+        <use id="IRRAWADDY-RIVER" class="map-item map-river map-river-show" aria-label="Irrawaddy River" href="img/se-asia-oceania/Irrawaddy River.svg#Irrawaddy_River"/>
+      </g>
+      <g class="map-item-group">
+        <path id="MEKONG-RIVER-TEXT" class="map-item-text-loc" d="M169.5054,210.8281"/>
+        <use id="MEKONG-RIVER-BB" class="map-item-bounds" href="img/se-asia-oceania/Mekong River.svg#bounds"/>
+        <use id="MEKONG-RIVER" class="map-item map-river map-river-show" aria-label="Mekong River" href="img/se-asia-oceania/Mekong River.svg#Mekong_River"/>
+      </g>
+      <g class="map-item-group">
+        <path id="YANGTZE-RIVER-TEXT" class="map-item-text-loc" d="M198.7246,175.1035"/>
+        <use id="YANGTZE-RIVER-BB" class="map-item-bounds" href="img/se-asia-oceania/Yangtze River.svg#bounds"/>
+        <use id="YANGTZE-RIVER" class="map-item map-river map-river-show" aria-label="Yangtze River" href="img/se-asia-oceania/Yangtze River.svg#Yangtze_River"/>
+      </g>
+      <g class="map-item-group">
+        <path id="YELLOW-RIVER-TEXT" class="map-item-text-loc" d="M203.68,129.748"/>
+        <use id="YELLOW-RIVER-BB" class="map-item-bounds" href="img/se-asia-oceania/Yellow River.svg#bounds"/>
+        <use id="YELLOW-RIVER" class="map-item map-river map-river-show" aria-label="Yellow River" href="img/se-asia-oceania/Yellow River.svg#Yellow_River"/>
+      </g>
+
+      <!-- Above rivers -->
+
+      <!--  Mountains  -->
+
+      <!--  Conflicts with mountains  -->
+
+      <!--  Markers  -->
+      <g class="map-item-group">
+        <path id="ANDAMAN-SEA-TEXT" class="map-item-text-loc" d="M116.1426,289.3128"/>
+        <use id="ANDAMAN-SEA-BB" class="map-item-bounds" href="img/se-asia-oceania/Andaman Sea.svg#bounds"/>
+        <use id="ANDAMAN-SEA" class="map-item marker" aria-label="Andaman Sea" href="img/se-asia-oceania/Andaman Sea.svg#Andaman_Sea"/>
+      </g>
+      <g class="map-item-group">
+        <path id="BANDA-SEA-TEXT" class="map-item-text-loc" d="M284.283,398.5106"/>
+        <use id="BANDA-SEA-BB" class="map-item-bounds" href="img/se-asia-oceania/Banda Sea.svg#bounds"/>
+        <use id="BANDA-SEA" class="map-item marker" aria-label="Banda Sea" href="img/se-asia-oceania/Banda Sea.svg#Banda_Sea"/>
+      </g>
+      <g class="map-item-group">
+        <path id="SEA-OF-JAPAN-TEXT" class="map-item-text-loc" d="M332.283,118.4255"/>
+        <use id="SEA-OF-JAPAN-BB" class="map-item-bounds" href="img/se-asia-oceania/Sea of Japan.svg#bounds"/>
+        <use id="SEA-OF-JAPAN" class="map-item marker" aria-label="Sea of Japan" href="img/se-asia-oceania/Sea of Japan.svg#Sea_of_Japan"/>
+      </g>
+      <g class="map-item-group">
+        <path id="JAVA-SEA-TEXT" class="map-item-text-loc" d="M207.5777,370.4468"/>
+        <use id="JAVA-SEA-BB" class="map-item-bounds" href="img/se-asia-oceania/Java Sea.svg#bounds"/>
+        <use id="JAVA-SEA" class="map-item marker" aria-label="Java Sea" href="img/se-asia-oceania/Java Sea.svg#Java_Sea"/>
+      </g>
+      <g class="map-item-group">
+        <path id="SOUTH-CHINA-SEA-TEXT" class="map-item-text-loc" d="M218.2277,267.1915"/>
+        <use id="SOUTH-CHINA-SEA-BB" class="map-item-bounds" href="img/se-asia-oceania/South China Sea.svg#bounds"/>
+        <use id="SOUTH-CHINA-SEA" class="map-item marker" aria-label="South China Sea" href="img/se-asia-oceania/South China Sea.svg#South_China_Sea"/>
+      </g>
+      <g class="map-item-group">
+        <path id="TASMAN-SEA-TEXT" class="map-item-text-loc" d="M447.4681,574.6809"/>
+        <use id="TASMAN-SEA-BB" class="map-item-bounds" href="img/se-asia-oceania/Tasman Sea.svg#bounds"/>
+        <use id="TASMAN-SEA" class="map-item marker" aria-label="Tasman Sea" href="img/se-asia-oceania/Tasman Sea.svg#Tasman_Sea"/>
+      </g>
+    </svg>
+  </div>
+  <div class="map-controls">
+    <div id="map-controls-mode" class="text-left">
+      <!--      <label for="select-mode"></label>-->
+      <!--      <select id="select-mode" onchange="changeQuiz(this);">-->
+      <!--        <option value="match">Match</option>-->
+      <!--        <option value="type">Type</option>-->
+      <!--      </select>-->
+    </div>
+    <div id="map-controls-btns">
+      <button class="btn btn-secondary map-restart-btn" onclick="restartQuiz();">Restart</button>
+      <button class="btn btn-secondary map-review-btn d-none" onclick="reviewQuiz();">Review</button>
+    </div>
+    <div id="map-controls-view-text" class="form-check text-right">
+      <label for="checkbox-view-text" class="form-check-label">View text</label>
+      <input id="checkbox-view-text" class="form-check-input float-right" type="checkbox" onclick="viewText(this);">
+    </div>
+  </div>
+</main>
+
+<div class="tooltip-div d-none">
+  <span id="tooltip-content"></span>
+</div>
+
+<!--  Bootstrap JS  -->
+<script crossorigin="anonymous"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<!--  Main JS  -->
+<script>
+  window.quiz = {
+    curName: '',
+    done: []
+  }
+</script>
+<script src="quiz.js"></script>
+</body>
+</html>

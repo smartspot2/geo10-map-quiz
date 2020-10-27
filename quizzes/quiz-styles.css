@@ -32,6 +32,18 @@ main {
     stroke-width: 2px;
 }
 
+.map-div .map-item.map-river-show {
+    stroke: #95979a;
+    stroke-width: 2px;
+}
+
+.map-div .map-item.map-region {
+    fill: #eee5;
+    stroke-width: 1px;
+    stroke: #95979a;
+    stroke-dasharray: 5, 5;
+}
+
 .map-div .map-item.marker {
     stroke: #000 !important;
     stroke-width: 1pt !important;
