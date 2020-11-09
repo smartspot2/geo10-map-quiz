@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GEO10 Map Quizzes</title>
+  <!--  Bootstrap 5 (alpha)  -->
+  <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" rel="stylesheet"/>
+
+  <!--  Stylesheets  -->
+  <link href="../styles.css" rel="stylesheet" type="text/css"/>
+  <link href="quiz-styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header class="text-center">
+  <nav class="navbar navbar-expand-xl navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../index.html">Geography 10 Map Quizzes</a>
+      <button class="navbar-toggler" aria-controls=#navbar-content" aria-expanded="false" aria-label="Toggle navbar"
+              data-target="#navbar-content" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbar-content" class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="south-america.html">South America</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="north-america.html">North America</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="middle-east-asia.html">Middle East & Asia</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="europe.html">Europe</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="se-asia-oceania.html">SE Asia & Oceania</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link active" href="africa.html">Africa</a>
+          </li>
+          <li class="nav-item flex-fill">
+            <a class="nav-link" href="world.html">World</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="question-div">
+    <span id="stopwatch" class="text-left align-baseline"></span>
+    <span id="question-span" class="text-center align-baseline"></span>
+    <span id="progress" class="text-right align-baseline"></span>
+  </div>
+  <div class="map-div">
+    <!--    <svg id="africa-map" preserveAspectRatio="xMidYMid meet" viewBox="0 0 792 612">-->
+    <svg id="africa-map" preserveAspectRatio="xMidYMid meet" viewBox="18 14.8408 792 612">
+      <image class="base-map" height="100%" href="img/africa/Africa.svg" width="100%"/>
+      <!-- Countries -->
+
+      <!-- Above countries -->
+      <g class="map-item-group">
+        <path id="NAMIB-DESERT-TEXT" class="map-item-text-loc" d="M410.2553,508.7926"/>
+        <use id="NAMIB-DESERT" class="map-item" aria-label="Namib Desert" href="img/africa/Namib Desert.svg#Namib_Desert"/>
+      </g>
+      <g class="map-item-group">
+        <path id="SAHARA-DESERT-TEXT" class="map-item-text-loc" d="M337.8617,113.0851"/>
+        <use id="SAHARA-DESERT" class="map-item" aria-label="Sahara Desert" href="img/africa/Sahara Desert.svg#Sahara_Desert"/>
+      </g>
+
+      <!--  Rivers  -->
+      <g class="map-item-group">
+        <path id="CONGO-RIVER-TEXT" class="map-item-text-loc" d="M442.49,308.918"/>
+        <use id="CONGO-RIVER-BB" class="map-item-bounds" href="img/africa/Congo River.svg#bounds"/>
+        <use id="CONGO-RIVER" class="map-item map-river" aria-label="Congo River" href="img/africa/Congo River.svg#Congo_River"/>
+      </g>
+      <g class="map-item-group">
+        <path id="NILE-RIVER-TEXT" class="map-item-text-loc" d="M484.0934,133.9237"/>
+        <use id="NILE-RIVER-BB" class="map-item-bounds" href="img/africa/Nile River.svg#bounds"/>
+        <use id="NILE-RIVER" class="map-item map-river" aria-label="Nile River" href="img/africa/Nile River.svg#Nile_River"/>
+      </g>
+
+      <!-- Above rivers -->
+      <g class="map-item-group">
+        <path id="LAKE-VICTORIA-TEXT" class="map-item-text-loc" d="M537.734,323.415"/>
+        <use id="LAKE-VICTORIA" class="map-item" aria-label="Lake Victoria" href="img/africa/Lake Victoria.svg#Lake_Victoria"/>
+      </g>
+
+      <!--  Mountains  -->
+
+      <!--  Conflicts with mountains  -->
+
+      <!--  Markers  -->
+      <g class="map-item-group">
+        <path id="ARABIAN-SEA-TEXT" class="map-item-text-loc" d="M722.2489,168.7098"/>
+        <use id="ARABIAN-SEA-BB" class="map-item-bounds" href="img/africa/Arabian Sea.svg#bounds"/>
+        <use id="ARABIAN-SEA" class="map-item marker" aria-label="Arabian Sea" href="img/africa/Arabian Sea.svg#Arabian_Sea"/>
+      </g>
+      <g class="map-item-group">
+        <path id="GULF-OF-ADEN-TEXT" class="map-item-text-loc" d="M621.3979,198.5227"/>
+        <use id="GULF-OF-ADEN-BB" class="map-item-bounds" href="img/africa/Gulf of Aden.svg#bounds"/>
+        <use id="GULF-OF-ADEN" class="map-item marker" aria-label="Gulf of Aden" href="img/africa/Gulf of Aden.svg#Gulf_of_Aden"/>
+      </g>
+      <g class="map-item-group">
+        <path id="GULF-OF-GUINEA-TEXT" class="map-item-text-loc" d="M298.5683,313.2946"/>
+        <use id="GULF-OF-GUINEA-BB" class="map-item-bounds" href="img/africa/Gulf of Guinea.svg#bounds"/>
+        <use id="GULF-OF-GUINEA" class="map-item marker" aria-label="Gulf of Guinea" href="img/africa/Gulf of Guinea.svg#Gulf_of_Guinea"/>
+      </g>
+      <g class="map-item-group">
+        <path id="INDIAN-OCEAN-TEXT" class="map-item-text-loc" d="M733.1468,304.1742"/>
+        <use id="INDIAN-OCEAN-BB" class="map-item-bounds" href="img/africa/Indian Ocean.svg#bounds"/>
+        <use id="INDIAN-OCEAN" class="map-item marker" aria-label="Indian Ocean" href="img/africa/Indian Ocean.svg#Indian_Ocean"/>
+      </g>
+      <g class="map-item-group">
+        <path id="MEDITERRANEAN-SEA-TEXT" class="map-item-text-loc" d="M393.0706,37.9418"/>
+        <use id="MEDITERRANEAN-SEA-BB" class="map-item-bounds" href="img/africa/Mediterranean Sea.svg#bounds"/>
+        <use id="MEDITERRANEAN-SEA" class="map-item marker" aria-label="Mediterranean Sea" href="img/africa/Mediterranean Sea.svg#Mediterranean_Sea"/>
+      </g>
+      <g class="map-item-group">
+        <path id="MOUNT-KILIMANJARO-TEXT" class="map-item-text-loc" d="M544.3351,350.7768"/>
+        <use id="MOUNT-KILIMANJARO-BB" class="map-item-bounds" href="img/africa/Mount Kilimanjaro.svg#bounds"/>
+        <use id="MOUNT-KILIMANJARO" class="map-item marker" aria-label="Mount Kilimanjaro" href="img/africa/Mount Kilimanjaro.svg#Mount_Kilimanjaro"/>
+      </g>
+      <g class="map-item-group">
+        <path id="RED-SEA-TEXT" class="map-item-text-loc" d="M556.3354,145.8234"/>
+        <use id="RED-SEA-BB" class="map-item-bounds" href="img/africa/Red Sea.svg#bounds"/>
+        <use id="RED-SEA" class="map-item marker" aria-label="Red Sea" href="img/africa/Red Sea.svg#Red_Sea"/>
+      </g>
+      <g class="map-item-group">
+        <path id="STRAIT-OF-GIBRALTAR-TEXT" class="map-item-text-loc" d="M234.3421,29.4625"/>
+        <use id="STRAIT-OF-GIBRALTAR-BB" class="map-item-bounds" href="img/africa/Strait of Gibraltar.svg#bounds"/>
+        <use id="STRAIT-OF-GIBRALTAR" class="map-item marker" aria-label="Strait of Gibraltar" href="img/africa/Strait of Gibraltar.svg#Strait_of_Gibraltar"/>
+      </g>
+      <g class="map-item-group">
+        <path id="SUEZ-CANAL-TEXT" class="map-item-text-loc" d="M507.2541,60.583"/>
+        <use id="SUEZ-CANAL-BB" class="map-item-bounds" href="img/africa/Suez Canal.svg#bounds"/>
+        <use id="SUEZ-CANAL" class="map-item marker" aria-label="Suez Canal" href="img/africa/Suez Canal.svg#Suez_Canal"/>
+      </g>
+    </svg>
+  </div>
+  <div class="map-controls">
+    <div id="map-controls-mode" class="text-left">
+      <!--      <label for="select-mode"></label>-->
+      <!--      <select id="select-mode" onchange="changeQuiz(this);">-->
+      <!--        <option value="match">Match</option>-->
+      <!--        <option value="type">Type</option>-->
+      <!--      </select>-->
+    </div>
+    <div id="map-controls-btns">
+      <button class="btn btn-secondary map-restart-btn" onclick="restartQuiz();">Restart</button>
+      <button class="btn btn-secondary map-review-btn d-none" onclick="reviewQuiz();">Review</button>
+    </div>
+    <div id="map-controls-view-text" class="form-check text-right">
+      <label for="checkbox-view-text" class="form-check-label">View text</label>
+      <input id="checkbox-view-text" class="form-check-input float-right" type="checkbox" onclick="viewText(this);">
+    </div>
+  </div>
+</main>
+
+<div class="tooltip-div d-none">
+  <span id="tooltip-content"></span>
+</div>
+
+<!--  Bootstrap JS  -->
+<script crossorigin="anonymous"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<!--  Main JS  -->
+<script>
+  window.quiz = {
+    curName: '',
+    done: []
+  }
+</script>
+<script src="quiz.js"></script>
+</body>
+</html>
