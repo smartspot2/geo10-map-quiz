@@ -181,6 +181,7 @@ main {
     padding: 5px;
     background-color: var(--primary-color);
     border-radius: 8px;
+    pointer-events: none;
 }
 
 .tooltip-div span {

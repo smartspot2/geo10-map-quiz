@@ -9,14 +9,13 @@
 }
 
 body {
-    margin: 20px;
+    margin: 0 0 20px;
     color: var(--text-color);
 }
 
 header {
     padding: 10px;
     background: var(--primary-color);
-    border-radius: 10px;
 }
 
 header .navbar-brand {
@@ -26,11 +25,13 @@ header .navbar-brand {
 header .navbar .nav-item {
     border-radius: 2px;
     padding: 0 10px;
+    text-align: right;
 }
 
 header .navbar .nav-link {
     border-radius: 2px;
     margin: auto;
+    padding: 5px 10px;
 }
 
 header .navbar .nav-link:hover {
