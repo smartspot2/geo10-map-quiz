@@ -3,17 +3,22 @@
     --correct-color: green;
     --highlight-color: blue;
     --map-width: 50vw;
+    --map-height: 75vh;
 }
 
 main {
+    user-select: none;
     max-height: 100%;
     height: 100%;
 }
 
+/* TODO: add zoom button in one of the map div corners */
+/* TODO: change mouse cursor when panning/zooming? hard to override map-item cursors */
 .map-div {
     margin: auto;
     width: var(--map-width);
-    /*height: 80vh;*/
+    max-height: var(--map-height);
+    overflow: hidden;
 }
 
 .map-div svg {

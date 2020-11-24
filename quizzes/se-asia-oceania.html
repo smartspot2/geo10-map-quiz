@@ -56,7 +56,7 @@
     <span id="progress" class="text-right align-baseline"></span>
   </div>
   <div class="map-div">
-    <svg id="se-asia-oceania-map" preserveAspectRatio="xMidYMid meet" viewBox="0 0 792 612">
+    <svg id="se-asia-oceania-map" class="map-svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 792 612">
       <!-- Turn down brightness of image -->
       <filter id="linear" x="0" y="0" width="100%" height="100%">
         <feComponentTransfer>
@@ -65,7 +65,7 @@
           <feFuncB type="linear" slope="1.5" intercept="0.1"></feFuncB>
         </feComponentTransfer>
       </filter>
-      <image class="base-map" height="100%" href="img/se-asia-oceania/SEAsiaOceania.svg" width="100%" filter="url(#linear)"/>
+      <image class="base-map" href="img/se-asia-oceania/SEAsiaOceania.svg" width="792" height="612" filter="url(#linear)"/>
       <!-- Countries -->
       <g class="map-item-group">
         <path id="AUSTRALIA-TEXT" class="map-item-text-loc" d="M321.6656,489.0985"/>
@@ -328,6 +328,7 @@
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
 <!--  Main JS  -->
+<script src="js/movement.js"></script>
 <script src="js/quiz.js"></script>
 </body>
 </html>

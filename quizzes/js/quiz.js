@@ -261,6 +261,12 @@ class MapItem {
   displayName = '';
 
   /**
+   * Movement handler object for the map item
+   * @type {Movement}
+   */
+  movementHandler = null;
+
+  /**
    * Creates a wrapper for a map item
    * @param {SVGGElement} mapItemGroup
    */
@@ -305,12 +311,15 @@ class MapItem {
    * @param args - arguments to pass to callback function
    */
   setClickHandler(callback, ...args) {
+    let grouped = [];
     if (this.mapItem) {
-      this.mapItem.onclick = () => callback(...args);
+      grouped.push(this.mapItem);
     }
     if (this.mapItemBounds) {
-      this.mapItemBounds.onclick = () => callback(...args);
+      grouped.push(this.mapItemBounds);
     }
+    this.movementHandler = new Movement(...grouped);
+    this.movementHandler.setOnClick(() => callback(...args));
   }
 
   /**
