@@ -133,6 +133,11 @@ class Movement {
   }
 }
 
+
+// Constants for transformSvg
+let MIN_ABS_ZOOM = 150;
+let MAX_ABS_ZOOM = 1000;
+
 /**
  * Translates and scales map SVG based on mouse movements and scroll.
  * All coordinate values should be relative to the document coordinate system,
@@ -145,9 +150,7 @@ class Movement {
  * @param scrollAmt - scroll wheel direction
  */
 function transformSvg(mouseX, mouseY, moveX, moveY, scrollAmt) {
-  const SCROLL_FACTOR = 0.05;
-  const MIN_ZOOM = 0.2;
-  const MAX_ZOOM = 2;
+  window.SCROLL_FACTOR = 0.2;
 
   let mapDiv = document.getElementsByClassName('map-div').item(0);
   let mapSvg = document.getElementsByClassName('map-svg').item(0);
@@ -155,65 +158,115 @@ function transformSvg(mouseX, mouseY, moveX, moveY, scrollAmt) {
 
   let divWidth = mapDiv.clientWidth;  // container div for the svg
   let divHeight = mapDiv.clientHeight;
-  let svgBB = baseMap.getBoundingClientRect();  // container svg for the map
   let svgWidth = mapSvg.clientWidth;
   let svgHeight = mapSvg.clientHeight;
-  let imgWidth = svgBB.width;  // background map image
-  let imgHeight = svgBB.height;
-
-  // if we need to adjust min/max offsets, then there is no scaling
-  let noScale = false;
-  // Boundary of panning
-  let minOffsetX = 0
-  let maxOffsetX = imgWidth - divWidth;
-  if (minOffsetX > maxOffsetX) {  // make sure min <= max
-    noScale = true;
-    minOffsetX = maxOffsetX = 0;
-  }
-  let minOffsetY = 0;
-  let maxOffsetY = Math.max(imgHeight - divHeight, 0);
-  if (minOffsetY > maxOffsetY) {  // make sure min <= max
-    noScale = true;
-    minOffsetY = maxOffsetY = 0;
-  }
 
   // get viewBox from svg, convert to floats
   let viewBox = mapSvg.getAttribute('viewBox');
   let [viewX, viewY, viewW, viewH] = viewBox.split(' ').map(x => parseFloat(x));
 
+  let baseMapBB = baseMap.getBoundingClientRect();  // container svg for the map
+  let baseMapWidth = baseMapBB.width;  // background map image
+  let baseMapHeight = baseMapBB.height;
+
+  let baseMapSvgWidth = parseFloat(baseMap.getAttribute('width'));
+  let baseMapSvgHeight = parseFloat(baseMap.getAttribute('height'));
+
+  MAX_ABS_ZOOM = Math.max(MAX_ABS_ZOOM, baseMapSvgHeight);
+  // console.log(baseMapWidth, baseMapHeight);
+
   // mouseX, Y are in document coordinates; no need to convert
   let scroll_dw = svgWidth * Math.sign(scrollAmt) * SCROLL_FACTOR;
   let scroll_dh = svgHeight * Math.sign(scrollAmt) * SCROLL_FACTOR;
+
+  // Conversion from viewBox coordinates to document coordinates
+  let viewToSvgW = Math.abs(svgWidth / viewW);
+  let viewToSvgH = Math.abs(svgHeight / viewH);
+  let minViewToSvg = Math.min(viewToSvgW, viewToSvgH);
+  viewToSvgW = minViewToSvg;
+  viewToSvgH = minViewToSvg;
+
+  // Don't scale if already at full size
+  if ((baseMapSvgHeight > viewH && baseMapSvgWidth > viewW) || Math.sign(scrollAmt) < 0) {
+    // TODO: change to absolute zoom in *document coordinates*; this will need
+    //  some math to determine the scaling clamp *with* the mousewheel scale
+    // TODO: very likely needing a full rewrite; pretty it up a little too
+    //   perhaps also just use getCTM(); it's still supported in every browser
+    console.log('scaleW', viewW, '->', viewW + scroll_dw, MIN_ABS_ZOOM, MAX_ABS_ZOOM);
+    console.log('scaleH', viewH, '->', viewH + scroll_dh, MIN_ABS_ZOOM, MAX_ABS_ZOOM);
+    // let newViewW = clamp(viewW + scroll_dw, MIN_ZOOM * baseMapSvgWidth, MAX_ZOOM * baseMapSvgWidth);
+    // let newViewH = clamp(viewH + scroll_dh, MIN_ZOOM * baseMapSvgHeight, MAX_ZOOM * baseMapSvgHeight);
+    let newViewW = clamp(viewW + scroll_dw, MIN_ABS_ZOOM, MAX_ABS_ZOOM);
+    let newViewH = clamp(viewH + scroll_dh, MIN_ABS_ZOOM, MAX_ABS_ZOOM);
+    if (newViewW === viewW || newViewH === viewH) {
+      console.log('set to 0')
+      scroll_dw = scroll_dh = 0;  // if no change, cancel scroll
+    } else {
+      viewW = newViewW;  // update view width/height
+      viewH = newViewH;
+      mapSvg.setAttribute('viewBox', `${viewX} ${viewY} ${viewW} ${viewH}`);
+      baseMapBB = baseMap.getBoundingClientRect();  // container svg for the map
+      baseMapWidth = baseMapBB.width;  // background map image
+      baseMapHeight = baseMapBB.height;
+    }
+  } else {  // cancel scrolling if no scaling
+    scroll_dw = scroll_dh = 0;
+  }
+  // console.log(baseMapWidth, baseMapHeight);
+
+  // if we need to adjust min/max offsets, then there is no scaling
+  // Boundary of panning
+  let minOffsetX = 0
+  // let maxOffsetX = baseMapWidth - divWidth;
+  let maxOffsetX = baseMapSvgWidth - viewW;
+  if (minOffsetX > maxOffsetX) {  // make sure min <= max
+    minOffsetX = maxOffsetX = 0;
+  }
+  let minOffsetY = 0;
+  // let maxOffsetY = baseMapHeight - divHeight;
+  let maxOffsetY = baseMapSvgHeight - viewH;
+  if (minOffsetY > maxOffsetY) {  // make sure min <= max
+    minOffsetY = maxOffsetY = 0;
+  }
+  console.log(minOffsetX, maxOffsetX, minOffsetY, maxOffsetY)
+
+  // Conversion from viewBox coordinates to document coordinates
+  viewToSvgW = Math.abs(svgWidth / viewW);
+  viewToSvgH = Math.abs(svgHeight / viewH);
+  minViewToSvg = Math.min(viewToSvgW, viewToSvgH);
+  viewToSvgW = minViewToSvg;
+  viewToSvgH = minViewToSvg;
+
+  // viewToSvgW = Math.abs(svgWidth / viewW);
+  // viewToSvgH = Math.abs(svgHeight / viewH);
+  // minViewToSvg = Math.min(viewToSvgW, viewToSvgH);
+  // viewToSvgW = viewToSvgH = minViewToSvg;
 
   // position of mouse in relation to the svg width/height
   let scrollFracX = mouseX / svgWidth;
   let scrollFracY = mouseY / svgHeight;
 
-  // Don't scale if already at full size
-  if (!noScale || Math.sign(scrollAmt) < 0) {
-    let newViewW = clamp(viewW + scroll_dw, MIN_ZOOM * svgWidth, MAX_ZOOM * svgHeight);
-    let newViewH = clamp(viewH + scroll_dh, MIN_ZOOM * svgHeight, MAX_ZOOM * svgHeight);
-    if (newViewW === viewW || newViewH === viewH) {
-      scroll_dw = scroll_dh = 0;  // if no change, cancel scroll
-    }
-    viewW = newViewW;  // update view width/height
-    viewH = newViewH;
-  } else {  // cancel scrolling if no scaling
-    scroll_dw = scroll_dh = 0;
-  }
-
-  // Conversion from viewBox coordinates to document coordinates
-  let viewToSvgW = Math.abs(svgWidth / viewW);
-  let viewToSvgH = Math.abs(svgHeight / viewH);
+  // console.log(viewX - moveX / viewToSvgW - scroll_dw * scrollFracX,
+  //     '->', clamp(  // (original converted) - (drag) - (zoom scaled)
+  //         viewX - moveX / viewToSvgW - scroll_dw * scrollFracX,
+  //         minOffsetX, maxOffsetX  // limit to image bounds
+  //     ), '|',
+  //     (viewY * viewToSvgH - moveY - scroll_dh * scrollFracY * viewToSvgH) / viewToSvgH,
+  //     '->', clamp(
+  //         (viewY * viewToSvgH - moveY - scroll_dh * scrollFracY * viewToSvgH) / viewToSvgH,
+  //         minOffsetY, maxOffsetY
+  //     )
+  // );
 
   viewX = clamp(  // (original converted) - (drag) - (zoom scaled)
-      viewX * viewToSvgW - moveX - scroll_dw * scrollFracX * viewToSvgW,
+      (viewX * viewToSvgW - moveX - scroll_dw * scrollFracX * viewToSvgW) / viewToSvgW,
       minOffsetX, maxOffsetX  // limit to image bounds
-  ) / viewToSvgW;  // convert back to svg coordinates
+  );  // convert back to svg coordinates
   viewY = clamp(
-      viewY * viewToSvgH - moveY - scroll_dh * scrollFracY * viewToSvgH,
+      (viewY * viewToSvgH - moveY - scroll_dh * scrollFracY * viewToSvgH) / viewToSvgH,
       minOffsetY, maxOffsetY
-  ) / viewToSvgH;
+  );
+
   // Set new viewBox values
   mapSvg.setAttribute('viewBox', `${viewX} ${viewY} ${viewW} ${viewH}`);
 }
@@ -221,6 +274,7 @@ function transformSvg(mouseX, mouseY, moveX, moveY, scrollAmt) {
 // TODO: add reset zoom button, HTML/CSS zoom buttons
 
 window.addEventListener('load', () => {
+  transformSvg(10, 10, 1, 1, 1);
   let mapDiv = document.getElementsByClassName('map-div').item(0)
   let mapMovement = new Movement(mapDiv);
 
@@ -229,8 +283,9 @@ window.addEventListener('load', () => {
   });
 
   mapDiv.addEventListener('mousewheel', (e) => {
+    e.preventDefault();
     transformSvg(e.offsetX, e.offsetY, 0, 0, e.deltaY);
-  }, {passive: true});
+  });
 
 })
 
