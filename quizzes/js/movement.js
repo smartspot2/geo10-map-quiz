@@ -192,14 +192,14 @@ function transformSvg(mouseX, mouseY, moveX, moveY, scrollAmt) {
     //  some math to determine the scaling clamp *with* the mousewheel scale
     // TODO: very likely needing a full rewrite; pretty it up a little too
     //   perhaps also just use getCTM(); it's still supported in every browser
-    console.log('scaleW', viewW, '->', viewW + scroll_dw, MIN_ABS_ZOOM, MAX_ABS_ZOOM);
-    console.log('scaleH', viewH, '->', viewH + scroll_dh, MIN_ABS_ZOOM, MAX_ABS_ZOOM);
+    // console.log('scaleW', viewW, '->', viewW + scroll_dw, MIN_ABS_ZOOM, MAX_ABS_ZOOM);
+    // console.log('scaleH', viewH, '->', viewH + scroll_dh, MIN_ABS_ZOOM, MAX_ABS_ZOOM);
     // let newViewW = clamp(viewW + scroll_dw, MIN_ZOOM * baseMapSvgWidth, MAX_ZOOM * baseMapSvgWidth);
     // let newViewH = clamp(viewH + scroll_dh, MIN_ZOOM * baseMapSvgHeight, MAX_ZOOM * baseMapSvgHeight);
     let newViewW = clamp(viewW + scroll_dw, MIN_ABS_ZOOM, MAX_ABS_ZOOM);
     let newViewH = clamp(viewH + scroll_dh, MIN_ABS_ZOOM, MAX_ABS_ZOOM);
     if (newViewW === viewW || newViewH === viewH) {
-      console.log('set to 0')
+      // console.log('set to 0')
       scroll_dw = scroll_dh = 0;  // if no change, cancel scroll
     } else {
       viewW = newViewW;  // update view width/height
@@ -228,7 +228,7 @@ function transformSvg(mouseX, mouseY, moveX, moveY, scrollAmt) {
   if (minOffsetY > maxOffsetY) {  // make sure min <= max
     minOffsetY = maxOffsetY = 0;
   }
-  console.log(minOffsetX, maxOffsetX, minOffsetY, maxOffsetY)
+  // console.log(minOffsetX, maxOffsetX, minOffsetY, maxOffsetY)
 
   // Conversion from viewBox coordinates to document coordinates
   viewToSvgW = Math.abs(svgWidth / viewW);
