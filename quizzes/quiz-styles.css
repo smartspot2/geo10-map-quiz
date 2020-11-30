@@ -153,6 +153,10 @@ main {
     fill-opacity: 0.5;
 }
 
+#world-map .map-item-text-group {
+    font-size: 6pt;
+}
+
 .question-div {
     display: flex;
     position: sticky;
