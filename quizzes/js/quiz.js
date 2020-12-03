@@ -59,9 +59,9 @@ class Quiz {
   start = 0;
 
   constructor() {
-    this.#createMapItems();
+    this.createMapItems();
 
-    this.#initClickHandlers();
+    this.initClickHandlers();
     this.restartQuiz();
 
     this.start = Date.now();
@@ -70,7 +70,7 @@ class Quiz {
   /**
    * Converts HTML elements to a `MapItem` object wrapper for ease
    */
-  #createMapItems() {
+  createMapItems() {
     let mapItemGroups = document.getElementsByClassName('map-item-group');
     for (let mapItemGroup of mapItemGroups) {
       let group = new MapItem(mapItemGroup);
@@ -81,7 +81,7 @@ class Quiz {
   /**
    * Initializes click handlers for map items and bounds
    */
-  #initClickHandlers() {
+  initClickHandlers() {
     for (let mapItem of this.mapItems.values()) {
       mapItem.setClickHandler(this.processClick, mapItem.id);
     }
@@ -90,7 +90,7 @@ class Quiz {
   /**
    * Resets quiz items
    */
-  #initQuizItems() {
+  initQuizItems() {
     this.quizItems = [];
     for (let item of this.mapItems.values()) {
       this.quizItems.push(item);
@@ -100,7 +100,7 @@ class Quiz {
   /**
    * Resets quiz variable and info
    */
-  #initQuiz() {
+  initQuiz() {
     let randIdx = Math.floor(Math.random() * this.quizItems.length);
     let randItem = this.quizItems[randIdx];
 
@@ -130,9 +130,9 @@ class Quiz {
     if (init) {
       this.quizItems = init;
     } else {
-      this.#initQuizItems();
+      this.initQuizItems();
     }
-    this.#initQuiz();
+    this.initQuiz();
     this.start = Date.now();
 
     // Start stopwatch

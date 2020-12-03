@@ -1,16 +1,5 @@
 class Movement {
   /**
-   * Minimum euclidean distance before a click is no longer registered
-   * @type {number}
-   */
-  static THRESHOLD = 20;
-  /**
-   * Whether the mouse is pressed globally
-   * @type {boolean}
-   */
-  static global_mousedown = false;
-
-  /**
    * Whether the mouse is pressed on the bound objects
    * @type {boolean}
    */
@@ -40,41 +29,33 @@ class Movement {
     }
   }
 
-  static globalHandleMouseUp() {
-    Movement.global_mousedown = false;
-  }
-
-  static globalHandleMouseDown() {
-    Movement.global_mousedown = true;
-  }
-
   setOnClick = (listener) => {
-    this.#onClick = listener;
+    this.onClick = listener;
   }
 
   setOnDrag = (listener) => {
-    this.#onDrag = listener;
+    this.onDrag = listener;
   }
 
   setOnMouseDown = (listener) => {
-    this.#onMouseDown = listener;
+    this.onMouseDown = listener;
   }
 
   setOnMouseUp = (listener) => {
-    this.#onMouseUp = listener;
+    this.onMouseUp = listener;
   }
 
 
-  #onClick = () => {
+  onClick = () => {
   }
 
-  #onDrag = () => {
+  onDrag = () => {
   }
 
-  #onMouseDown = () => {
+  onMouseDown = () => {
   }
 
-  #onMouseUp = () => {
+  onMouseUp = () => {
   }
 
   /**
@@ -93,7 +74,7 @@ class Movement {
    * @param {MouseEvent} e - event object
    */
   handleMouseDown = (e) => {
-    this.#onMouseDown(e);
+    this.onMouseDown(e);
     this.mousedown = true;
     this.dragging = false;
     this.start = {x: e.pageX, y: e.pageY};
@@ -106,10 +87,10 @@ class Movement {
   handleMouseUp = (e) => {
     // If never started the click here, then there is no click
     if (this.mousedown && !this.dragging) {
-      this.#onClick(e);
+      this.onClick(e);
     }
     if (this.mousedown) {
-      this.#onMouseUp(e);  // Only trigger mouseup if there was a mousedown
+      this.onMouseUp(e);  // Only trigger mouseup if there was a mousedown
     }
     this.mousedown = false;
     this.dragging = false;
@@ -124,13 +105,33 @@ class Movement {
     if (this.mousedown && !Movement.global_mousedown) {
       this.mousedown = false;
     } else if (this.mousedown) {
-      this.#onDrag(e);  // always call drag function
+      this.onDrag(e);  // always call drag function
       if (Math.hypot(this.start.x - e.pageX,
           this.start.y - e.pageY) >= Movement.THRESHOLD) {
         this.dragging = true;  // not a click if we get far enough away
       }
     }
   }
+}
+
+// no static support in Safari
+/**
+ * Minimum euclidean distance before a click is no longer registered
+ * @type {number}
+ */
+Movement.THRESHOLD = 20;
+/**
+ * Whether the mouse is pressed globally
+ * @type {boolean}
+ */
+Movement.global_mousedown = false;
+
+Movement.globalHandleMouseUp = () => {
+  Movement.global_mousedown = false;
+}
+
+Movement.globalHandleMouseDown = () => {
+  Movement.global_mousedown = true;
 }
 
 
